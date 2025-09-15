@@ -1,0 +1,43 @@
+Age,Gender,Symptom,Condition,Treatment
+25,Male,Fever,Common Cold,Rest and Hydration
+30,Female,Cough,Common Cold,Cough Syrup
+45,Male,Headache,Migraine,Pain Relievers
+50,Female,Joint Pain,Arthritis,Anti-inflammatory Drugs
+35,Male,Chest Pain,Heart Disease,Cardiac Medication
+28,Female,Skin Rash,Allergy,Antihistamines
+60,Male,High BP,Hypertension,Blood Pressure Medication
+55,Female,High Sugar,Diabetes,Insulin Therapy
+40,Male,Stomach Pain,Gastritis,Antacids
+20,Female,Sore Throat,Flu,Throat Lozenges
+32,Male,Fatigue,Anemia,Iron Supplements
+47,Female,Shortness of Breath,Asthma,Inhaler
+52,Male,Frequent Urination,Diabetes,Insulin Therapy
+22,Female,Nausea,Food Poisoning,Rehydration Salts
+38,Male,Dizziness,Vertigo,Medication for Vertigo
+65,Female,Memory Loss,Alzheimer's,Cholinesterase Inhibitors
+29,Male,Sleep Trouble,Insomnia,Sleeping Pills
+44,Female,Back Pain,Spinal Issues,Physiotherapy
+36,Male,Swelling,Gout,Anti-gout Medication
+27,Female,Weight Loss,Thyroid Disorder,Thyroid Medication
+48,Male,Night Sweats,Tuberculosis,Antibiotics
+53,Female,Hair Loss,Anemia,Iron Supplements
+41,Male,Anxiety,Stress Disorder,Counseling
+39,Female,Palpitations,Arrhythmia,Heart Medication
+24,Male,Acne,Skin Infection,Topical Cream
+33,Female,Vomiting,Food Poisoning,Antiemetics
+46,Male,Vision Problems,Glaucoma,Eye Drops
+31,Female,Ear Pain,Otitis,Antibiotics
+59,Male,Tremors,Parkinson's,Dopamine Medication
+26,Female,Depression,Mental Health Disorder,Antidepressants
+43,Male,Allergic Reaction,Allergy,Antihistamines
+50,Female,Chest Tightness,Asthma,Inhaler
+34,Male,Yellow Eyes,Hepatitis,Liver Medication
+62,Female,Leg Pain,Varicose Veins,Compression Stockings
+28,Male,Frequent Headache,Migraine,Pain Relievers
+54,Female,Cold Hands,Thyroid Disorder,Thyroid Medication
+45,Male,Difficulty Walking,Arthritis,Physiotherapy
+37,Female,Menstrual Pain,PCOS,Hormonal Therapy
+61,Male,Slow Movement,Parkinson's,Dopamine Medication
+30,Female,Skin Itching,Allergy,Antihistamines
+42,Male,Cough with Blood,Tuberculosis,Antibiotics
+23,Female,Fever with Ra
