@@ -1,0 +1,102 @@
+# ============================
+# Treatment Suggestion Model
+# Using Decision Tree Classifier
+# ============================
+
+# Install dependencies
+!pip install pandas scikit-learn tabulate
+
+import pandas as pd
+import random
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from tabulate import tabulate
+
+# ----------------------------
+# 1. Generate Synthetic Dataset (50 records)
+# ----------------------------
+ages = [random.randint(20,65) for _ in range(50)]
+genders = [random.choice(["Male","Female"]) for _ in range(50)]
+symptoms = [
+    "Fever","Cough","Headache","Joint Pain","Chest Pain","Skin Rash","High BP","High Sugar",
+    "Stomach Pain","Sore Throat","Fatigue","Shortness of Breath","Nausea","Dizziness","Memory Loss",
+    "Sleep Trouble","Back Pain","Swelling","Weight Loss","Night Sweats","Hair Loss","Anxiety",
+    "Palpitations","Acne","Vomiting","Vision Problems","Ear Pain","Tremors","Depression","Allergic Reaction",
+    "Chest Tightness","Yellow Eyes","Leg Pain","Frequent Headache","Cold Hands","Difficulty Walking",
+    "Menstrual Pain","Slow Movement","Skin Itching","Cough with Blood","Fever with Rash","Numbness",
+    "Weight Gain","Burning Urination","Excessive Thirst","Sleep Apnea","Bone Weakness","Loss of Balance"
+]
+
+conditions = [
+    "Common Cold","Flu","Migraine","Arthritis","Heart Disease","Allergy","Hypertension","Diabetes",
+    "Gastritis","Asthma","Anemia","PCOS","Tuberculosis","Vertigo","Alzheimer's","Insomnia",
+    "Spinal Issues","Gout","Thyroid Disorder","Stress Disorder","Arrhythmia","Skin Infection","Food Poisoning",
+    "Glaucoma","Otitis","Parkinson's","Mental Health Disorder","Varicose Veins","Hepatitis","Stroke",
+    "Respiratory Disorder","Osteoporosis","Dengue"
+]
+
+treatments = [
+    "Rest and Hydration","Cough Syrup","Pain Relievers","Anti-inflammatory Drugs","Cardiac Medication",
+    "Antihistamines","Blood Pressure Medication","Insulin Therapy","Antacids","Throat Lozenges",
+    "Iron Supplements","Inhaler","Rehydration Salts","Medication for Vertigo","Cholinesterase Inhibitors",
+    "Sleeping Pills","Physiotherapy","Anti-gout Medication","Thyroid Medication","Counseling",
+    "Heart Medication","Topical Cream","Antiemetics","Eye Drops","Antibiotics","Dopamine Medication",
+    "Antidepressants","Hormonal Therapy","Liver Medication","Clot-busting Drugs","CPAP Machine",
+    "Calcium Supplements","Fluids and Rest","Compression Stockings"
+]
+
+# Create random dataset
+data = {
+    "Age": ages,
+    "Gender": genders,
+    "Symptom": [random.choice(symptoms) for _ in range(50)],
+    "Condition": [random.choice(conditions) for _ in range(50)],
+    "Treatment": [random.choice(treatments) for _ in range(50)]
+}
+
+df = pd.DataFrame(data)
+
+# ----------------------------
+# 2. Preprocess Data
+# ----------------------------
+le_gender = LabelEncoder()
+le_symptom = LabelEncoder()
+le_condition = LabelEncoder()
+le_treatment = LabelEncoder()
+
+df["Gender"] = le_gender.fit_transform(df["Gender"])
+df["Symptom"] = le_symptom.fit_transform(df["Symptom"])
+df["Condition"] = le_condition.fit_transform(df["Condition"])
+df["Treatment"] = le_treatment.fit_transform(df["Treatment"])
+
+X = df[["Age","Gender","Symptom","Condition"]]
+y = df["Treatment"]
+
+# ----------------------------
+# 3. Train Decision Tree
+# ----------------------------
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2,random_state=42)
+
+model = DecisionTreeClassifier()
+model.fit(X_train,y_train)
+
+print("✅ Model Trained Successfully")
+print("📊 Model Accuracy:", model.score(X_test,y_test))
+
+# ----------------------------
+# 4. Make Predictions & Show in Table
+# ----------------------------
+predictions = model.predict(X_test)
+
+# Convert encoded labels back to original
+results = pd.DataFrame(X_test, columns=["Age","Gender","Symptom","Condition"])
+results["Gender"] = le_gender.inverse_transform(results["Gender"])
+results["Symptom"] = le_symptom.inverse_transform(results["Symptom"])
+results["Condition"] = le_condition.inverse_transform(results["Condition"])
+results["Actual Treatment"] = le_treatment.inverse_transform(y_test)
+results["Predicted Treatment"] = le_treatment.inverse_transform(predictions)
+
+# Display as nice table
+print("\n📌 Prediction Results:\n")
+print(tabulate(results.head(15), headers='keys', tablefmt='grid'))
